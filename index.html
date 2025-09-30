@@ -7,7 +7,7 @@
     
     <!-- Full-Screen App Meta Tags (for Android 'Add to Home Screen') -->
     <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-app-capable" content="yes">
     <meta name="theme-color" content="#000000"> <!-- Sets the status bar color to black -->
 
     <!-- PWA Manifest link (CRITICAL for guaranteed full-screen behavior) -->
@@ -27,14 +27,28 @@
             text-shadow: 0 0 10px rgba(132, 204, 22, 0.7); /* Subtle neon glow effect */
             font-family: 'Inter', monospace;
             line-height: 1; /* Keep figures close together */
-            letter-spacing: -0.05em; /* Slightly squeeze characters for better fit at 38vw */
+            letter-spacing: -0.05em; /* Slightly squeeze characters for better fit at high vw */
         }
+        
         /* Responsive font size adjustments to fill the width */
+
+        /* Styles for mobile devices (up to 640px equivalent width) */
         @media (max-width: 640px) {
-            #clock {
-                font-size: 34vw; /* Large size to occupy almost the entire mobile width */
+            /* Portrait Mode (narrow width, tall height) - use a safe size */
+            @media (orientation: portrait) {
+                #clock {
+                    font-size: 26vw; /* Reduced size to fit HH:MM:SS cleanly in narrow portrait mode */
+                }
+            }
+            /* Landscape Mode (wide width, short height) - use aggressive size */
+            @media (orientation: landscape) {
+                 #clock {
+                    font-size: 34vw; /* Aggressive size for full width in landscape mode */
+                }
             }
         }
+
+        /* Tablet and larger screens */
         @media (min-width: 641px) and (max-width: 1024px) {
             #clock {
                 font-size: 20vw;
