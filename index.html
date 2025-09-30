@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Full Screen Clock</title>
     
     <!-- Full-Screen App Meta Tags (for Android 'Add to Home Screen') -->
@@ -64,7 +64,7 @@
 
         // Set up the interval to update the time every second (1000 milliseconds)
         window.onload = function() {
-            updateTime(); // Initial call to display the time immediat ely
+            updateTime(); // Initial call to display the time immediately
             setInterval(updateTime, 1000);
         };
     </script>
