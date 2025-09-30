@@ -1,0 +1,21 @@
+{
+    "name": "Full Screen Clock",
+    "short_name": "Hi-Vis Clock",
+    "description": "A high-contrast, full-screen digital clock.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#000000",
+    "icons": [
+        {
+            "src": "https://placehold.co/192x192/000/84cc16?text=Clock",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://placehold.co/512x512/000/84cc16?text=Clock",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
