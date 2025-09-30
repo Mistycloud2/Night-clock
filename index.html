@@ -28,8 +28,18 @@
             font-family: 'Inter', monospace;
             line-height: 1; /* Keep figures close together */
             letter-spacing: -0.05em; /* Slightly squeeze characters for better fit at high vw */
+            display: flex; /* Use flexbox to align the large and small parts */
+            align-items: center; /* Vertically center the seconds relative to the minutes */
         }
         
+        /* This class makes the seconds much smaller (approx 75% size) and slightly adjusts the colon position */
+        .seconds-small {
+            font-size: 75%; 
+            line-height: 1;
+            /* Negative margin to pull the smaller seconds closer to the minutes for better visual flow */
+            margin-left: -0.05em; 
+        }
+
         /* Responsive font size adjustments to fill the width */
 
         /* Styles for mobile devices (up to 640px equivalent width) */
@@ -37,13 +47,13 @@
             /* Portrait Mode (narrow width, tall height) - use a safe size */
             @media (orientation: portrait) {
                 #clock {
-                    font-size: 22vw; /* Reduced size to fit HH:MM:SS cleanly in narrow portrait mode */
+                    font-size: 22vw; /* Optimized size for portrait mode */
                 }
             }
             /* Landscape Mode (wide width, short height) - use aggressive size */
             @media (orientation: landscape) {
                  #clock {
-                    font-size: 34vw; /* Aggressive size for full width in landscape mode */
+                    font-size: 34vw; /* Optimized size for landscape mode */
                 }
             }
         }
@@ -65,17 +75,26 @@
         function updateTime() {
             const now = new Date();
             
-            // Get hours in 24-hour format (0-23)
+            // Get hours, minutes, and seconds, padded to two digits
             const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
             
-            // Format the time string in 24-hour format (HH:MM:SS)
-            const timeString = `${hours}:${minutes}:${seconds}`;
+            // 1. Create the string for Hours and Minutes (Large text)
+            const mainTime = `${hours}:${minutes}`;
+
+            // 2. Create the string for the Colon and Seconds (Small text)
+            // We are including the colon here to apply the smaller font size to it as well
+            const secondsTime = `:${seconds}`;
+
+            // 3. Combine them with the necessary HTML structure
+            // The <span> applies the 'seconds-small' style
+            const timeHTML = `${mainTime}<span class="seconds-small">${secondsTime}</span>`;
 
             const clockElement = document.getElementById('clock');
             if (clockElement) {
-                clockElement.textContent = timeString;
+                // Insert the HTML string with the nested span
+                clockElement.innerHTML = timeHTML;
             }
         }
 
@@ -90,7 +109,7 @@
 
     <!-- The clock display container -->
     <div id="clock" class="text-lime-400 font-extrabold p-4">
-        --:--:--
+        --:--<span class="seconds-small">:--</span>
     </div>
 
 </body>
