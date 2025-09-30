@@ -6,7 +6,6 @@
     <title>Full Screen Clock</title>
     
     <!-- Full-Screen App Meta Tags (for Android 'Add to Home Screen') -->
-    <!-- Tells Android/Chrome to launch in standalone (full-screen) mode -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000"> <!-- Sets the status bar color to black -->
@@ -28,21 +27,22 @@
             text-shadow: 0 0 10px rgba(132, 204, 22, 0.7); /* Subtle neon glow effect */
             font-family: 'Inter', monospace;
             line-height: 1; /* Keep figures close together */
+            letter-spacing: -0.05em; /* Slightly squeeze characters for better fit at 38vw */
         }
-        /* Responsive font size adjustments */
+        /* Responsive font size adjustments to fill the width */
         @media (max-width: 640px) {
             #clock {
-                font-size: 15vw; /* Extremely large size for mobile */
+                font-size: 38vw; /* Large size to occupy almost the entire mobile width */
             }
         }
         @media (min-width: 641px) and (max-width: 1024px) {
             #clock {
-                font-size: 10vw;
+                font-size: 20vw;
             }
         }
         @media (min-width: 1025px) {
             #clock {
-                font-size: 8vw;
+                font-size: 15vw;
             }
         }
     </style>
