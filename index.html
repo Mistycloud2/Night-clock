@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full Screen Clock</title>
+    
+    <!-- Full-Screen App Meta Tags (for Android 'Add to Home Screen') -->
+    <!-- Tells Android/Chrome to launch in standalone (full-screen) mode -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000"> <!-- Sets the status bar color to black -->
+
     <!-- Load Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -40,18 +47,14 @@
         // Function to update the time display
         function updateTime() {
             const now = new Date();
-            let hours = now.getHours();
+            
+            // Get hours in 24-hour format (0-23)
+            const hours = String(now.getHours()).padStart(2, '0');
             const minutes = String(now.getMinutes()).padStart(2, '0');
             const seconds = String(now.getSeconds()).padStart(2, '0');
-            const ampm = hours >= 12 ? 'PM' : 'AM';
-
-            // Convert to 12-hour format
-            hours = hours % 12;
-            hours = hours ? hours : 12; // The hour '0' should be '12'
-            const hoursDisplay = String(hours).padStart(2, '0');
-
-            // Format the time string
-            const timeString = `${hoursDisplay}:${minutes}:${seconds} ${ampm}`;
+            
+            // Format the time string in 24-hour format (HH:MM:SS)
+            const timeString = `${hours}:${minutes}:${seconds}`;
 
             const clockElement = document.getElementById('clock');
             if (clockElement) {
@@ -70,7 +73,7 @@
 
     <!-- The clock display container -->
     <div id="clock" class="text-lime-400 font-extrabold p-4">
-        --:--:-- --
+        --:--:--
     </div>
 
 </body>
